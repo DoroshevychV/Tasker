@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasker - Index Page</title>
+
+    <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+
+    <!--<script type="text/javascript" src="../static/js/registration.js"></script>-->
+    <script type="text/javascript" src="js/registration.js"></script>
+
+    <!--<link rel="stylesheet" type="text/css" href="../static/css/index.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="../static/css/headfoot.css"/>-->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/headfoot.css"/>
+
+
+</head>
+<style>
+    body {
+        background-color: #ffff;
+    }
+</style>
+<body>
+
+<header>
+    <div class="Header-Container container">
+        <div class="row">
+            <div class="Header-Main-Logo col-md-12 text-center">
+                <i class="fab fa-java fa-5x center-block"></i>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<main>
+    <div class="Gradient-Block container-fluid">
+        <div class="row">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="About col-md-7">
+                        <h1 class="Title-Name">About</h1>
+
+                        <p>This mini project is a task from <a style="font-size: 30px" href="http://wwww.nerdysoft.com"
+                                                               target="_blank"><b style="color: gray">Nerdy</b><b
+                                style="color: #009688">Soft</b></a>
+                            .
+                            It is written by <a href="https://www.linkedin.com/in/doroshevychv/"
+                                                target="_blank"><b>Vadym
+                                Doroshevych</b></a> (candidate for the position).
+                        </p>
+                        <p><big><b>Used technologies:</b></big></p>
+                        <p><b>Front end:</b></p>
+                        <p class="Paragraph">
+                        <ul class="list-group">
+                            <li class="list-group-item">HTML, CSS, JavaScript, JQuery, Ajax, Bootstrap 3</li>
+                        </ul>
+                        <p><b>Back end:</b></p>
+                        <p class="Paragraph">
+                        <ul class="list-group">
+                            <li class="list-group-item">Java, Spring</li>
+                        </ul>
+
+                        <p><big><b>Task:</b> </big></p>
+                        <p><b>Implement task manager with next functionality:</b>
+
+                        <p>As a User I should be able to:</p>
+
+                        <ul class="list-group">
+                            <li class="list-group-item">Register in a system;</li>
+                            <li class="list-group-item">Login into the system;</li>
+                            <li class="list-group-item">Add new task;</li>
+                            <li class="list-group-item">Edit task;</li>
+                            <li class="list-group-item">Delete task;</li>
+                            <li class="list-group-item">Share the task (share using email of another user in the system
+                                who will be also able to manage task afterward);
+                            </li>
+                            <li class="list-group-item">See list of tasks (list should auto-update when someone shares
+                                tasks with user; in the list, user should see who has shared task);
+                            </li>
+                            <li class="list-group-item">Use Twitter Bootstrap for UI;</li>
+                            <li class="list-group-item">Cover code by tests.</li>
+                        </ul>
+
+                    </div>
+
+
+                    <div class="About col-md-5">
+                        <h1 class="Title-Name">Login & Registration</h1>
+                        <div class=" col-md-12">
+                            <h3 class="Small-Title-Name">Login</h3>
+                            <form class="Form-Square" method="post" action="/login">
+                                <div class="form-group">
+                                    <label for="login-email">Email address</label>
+                                    <input type="email" name="email" class="form-control" id="login-email"
+                                           placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="login-password">Password</label>
+                                    <input type="password" name="password" class="form-control" id="login-password"
+                                           placeholder="Password">
+                                </div>
+
+                                <button type="submit" class="btn btn-default">Login</button>
+                            </form>
+                        </div>
+
+                        <div class=" col-md-12">
+                            <h3 class="Small-Title-Name">Registration</h3>
+                            <form class="Form-Square" method="post" action="/registration">
+
+                                <div class="form-group">
+                                    <label for="registration-first-name">First name</label>
+                                    <input type="text"  class="form-control"
+                                           id="registration-first-name" placeholder="First name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="registration-email">Email address</label>
+                                    <input type="email" class="form-control" id="registration-email"
+                                           placeholder="Email">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="registration-password">Password</label>
+                                    <input type="password" name="password" class="form-control"
+                                           id="registration-password" placeholder="Password">
+                                </div>
+
+                                <button id="registration-button" type="button" class="btn btn-default">Register now</button>
+                            </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</main>
+
+
+<footer class="FOOTER">
+    <div class="container Footer-Container">
+        <div class="row">
+
+            <div class="Main-Photo-Block col-md-4 col-sm-12 col-md-push-4">
+                <img src="https://media.licdn.com/dms/image/C4D03AQFYzXy7z1DXAQ/profile-displayphoto-shrink_200_200/0?e=1545264000&v=beta&t=viFWW29wCcMxVhMfmcXi8tIiayOGOjeN_wJlb_Elu9I"
+                     class="Programmers-Photo center-block img-circle" alt="Vadym Doroshevych">
+            </div>
+
+            <div class="Full-Name-Block col-md-4 col-sm-12 col-md-pull-4">
+                <h1 class="Programmers-Name text-center">Vadym Doroshevych</h1>
+                <h5 class="Programmers-Position text-center">Junior Java Web Developer / Full Stack</h5>
+                <h5 class="Programmers-Location text-center"><i class="fas fa-map-marker-alt"></i><b> Ukraine, Lviv</b>
+                </h5>
+            </div>
+
+
+            <div class="Contact-Block col-md-4">
+                <div class="List col-md-6">
+                    <p><a href="http://instagram.com/doroshevychv" target="_blank" class="fab fa-instagram fa-lg"><span
+                            class="Contact-Link"> doroshevychv</span></a></p>
+                    <p><a href="http://facebook.com/doroshevychv" target="_blank" class="fab fa-facebook fa-lg"><span
+                            class="Contact-Link"> doroshevychv</span></a></p>
+                    <p><a href="https://www.linkedin.com/in/doroshevychv" target="_blank" class="fab fa-linkedin fa-lg"><span
+                            class="Contact-Link"> doroshevychv</span></a></p>
+
+                </div>
+
+                <div class="List col-md-6">
+                    <p><a href="skype:doroshevychv?chat" target="_blank" class="fab fa-skype fa-lg"><span
+                            class="Contact-Link"> doroshevychv</span></a></p>
+                    <p><a href="viber://chat?number=+380508865793" class="fab fa-viber fa-lg"><span
+                            class="Contact-Link">  0508865793</span></a></p>
+                    <p><a href="mailto:doroshevychv@gmail.com" class="fab fa-google fa-lg"><span class="Contact-Link"> doroshevychv</span></a>
+                    </p>
+                    <!--<a href="viber://add?number=+380508865793" class="fab fa-viber fa-lg"><span class="Contact-Link"> +380508865793</span></a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+</body>
+<script>
+    // $('#registration-button').click(function() {
+    //     alert("Hello");
+    // });
+</script>
+
+</html>

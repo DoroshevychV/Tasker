@@ -1,0 +1,43 @@
+.Gradient-Block{
+    background: #ffffff; /* Для старих браузрів */
+    background: linear-gradient(to bottom, #ffffff, rgba(0,0,0,0.2));
+    /*height: 500px;*/
+}
+
+.Title-Name{
+    padding-top: 50px;
+    font-family: "Ubuntu Condensed";
+    font-weight: bold;
+    color: rgba(0,0,0,0.7);
+    padding-bottom: 50px;
+}
+.About{
+    color: rgba(0,0,0,0.6);
+    font-family: "Ubuntu Condensed";
+    font-size: 22px;
+    font-weight: 100;
+    /*text-align: left;*/
+}
+.About p{
+    text-align: left;
+}
+
+.Form-Square{
+    padding: 50px;
+    background-color: #ffffff;
+}
+.Small-Title-Name{
+    color: gray;
+}
+
+label{
+    font-weight: 100;
+}
+
+
+
+
+/*OTHER*/
+.Paragraph{
+    text-indent: 40px; /* Відступ першої строки в пікселях */
+}
