@@ -8,12 +8,23 @@
  **/
 package com.tasker.service;
 
-import com.tasker.dto.PersonDTO;
+import com.tasker.dto.request.LoginPersonDTO;
+import com.tasker.dto.request.PersonDTO;
+import com.tasker.dto.response.TokenModel;
 import com.tasker.entity.Person;
 
 public interface PersonService {
 
-    void save(Person person);
+    TokenModel save(PersonDTO person);
 
-    boolean delete();
+//    boolean login(LoginPersonDTO loginPersonDTO);
+
+    Person getPersonByID(Long id);
+
+    TokenModel login(LoginPersonDTO loginPersonDTO);
+
+    Person findByEmail(String email);
+
+
+    TokenModel authentication(String email, String password);
 }

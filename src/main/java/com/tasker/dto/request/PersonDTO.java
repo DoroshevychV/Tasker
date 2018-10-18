@@ -1,10 +1,10 @@
 /**
- * @description
+ * @description Шаблон класа Persons
  * @author Vadym Doroshevych
  * @email doroshevychv@gmail.com
- * @date
+ * @date 18.10.2018 01:46
  **/
-package com.tasker.dto;
+package com.tasker.dto.request;
 
 public class PersonDTO {
     private String firstName;

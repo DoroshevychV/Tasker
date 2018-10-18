@@ -1,7 +1,6 @@
 .Gradient-Block{
     background: #ffffff; /* Для старих браузрів */
     background: linear-gradient(to bottom, #ffffff, rgba(0,0,0,0.2));
-    /*height: 500px;*/
 }
 
 .Title-Name{
@@ -16,7 +15,6 @@
     font-family: "Ubuntu Condensed";
     font-size: 22px;
     font-weight: 100;
-    /*text-align: left;*/
 }
 .About p{
     text-align: left;
@@ -40,4 +38,10 @@ label{
 /*OTHER*/
 .Paragraph{
     text-indent: 40px; /* Відступ першої строки в пікселях */
+}
+.Error-Field{
+    color: #CD5C5C;
+
+    font-size: 14px;
+    font-weight: 100;
 }

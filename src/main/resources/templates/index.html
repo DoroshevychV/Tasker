@@ -20,8 +20,8 @@
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 
 
-    <!--<script type="text/javascript" src="../static/js/registration.js"></script>-->
     <script type="text/javascript" src="js/registration.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
 
     <!--<link rel="stylesheet" type="text/css" href="../static/css/index.css"/>-->
     <!--<link rel="stylesheet" type="text/css" href="../static/css/headfoot.css"/>-->
@@ -106,18 +106,20 @@
                         <div class=" col-md-12">
                             <h3 class="Small-Title-Name">Login</h3>
                             <form class="Form-Square" method="post" action="/login">
+
                                 <div class="form-group">
                                     <label for="login-email">Email address</label>
                                     <input type="email" name="email" class="form-control" id="login-email"
                                            placeholder="Email">
                                 </div>
+
                                 <div class="form-group">
                                     <label for="login-password">Password</label>
                                     <input type="password" name="password" class="form-control" id="login-password"
                                            placeholder="Password">
                                 </div>
-
-                                <button type="submit" class="btn btn-default">Login</button>
+                                <span class="Error-Field col-md-12" id="login-error-field"></span>
+                                <button id="login-button" type="button" class="btn btn-default">Login</button>
                             </form>
                         </div>
 
@@ -128,21 +130,21 @@
                                 <div class="form-group">
                                     <label for="registration-first-name">First name</label>
                                     <input type="text"  class="form-control"
-                                           id="registration-first-name" placeholder="First name">
+                                           id="registration-first-name" placeholder="First name - 2-15 symbols and  include only letters">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="registration-email">Email address</label>
                                     <input type="email" class="form-control" id="registration-email"
-                                           placeholder="Email">
+                                           placeholder="Email - 5-35 symbols and include '@' and '.'">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="registration-password">Password</label>
                                     <input type="password" name="password" class="form-control"
-                                           id="registration-password" placeholder="Password">
+                                           id="registration-password" placeholder="Password - 8-28 symbols">
                                 </div>
-
+                                <span class="Error-Field col-md-12" id="registration-error-field"></span>
                                 <button id="registration-button" type="button" class="btn btn-default">Register now</button>
                             </form>
 
@@ -202,9 +204,7 @@
 </footer>
 </body>
 <script>
-    // $('#registration-button').click(function() {
-    //     alert("Hello");
-    // });
+
 </script>
 
 </html>

@@ -1,0 +1,23 @@
+$(document).ready(function () {
+
+        $.ajax({
+            'url': 'http://localhost:8080/getUser',
+            'type': "GET",
+            'contentType': 'application/json',
+            'dataType': 'json',
+            'headers': {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            'success': function (data) {
+                console.log(data.key + " = "+data.value);
+                document.cookie = data.key + "=" + data.value+";path=/";
+                window.location.replace("/user");
+            },
+            'error': function (error) {
+                $('#login-error-field').empty();
+                $('#login-error-field').text(JSON.parse(error.responseText).message);
+                console.log(JSON.parse(error.responseText).message);
+            }
+        });
+    });
+});
