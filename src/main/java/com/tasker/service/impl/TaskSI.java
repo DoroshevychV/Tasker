@@ -46,12 +46,26 @@ public class TaskSI implements TaskService {
 
     @Override
     public void edit(Task task) {
+        System.out.println("Service");
+        Task taskFromDatabase = taskRepository.getOne(task.getId());
+        Person thisPerson = Person.getPerson();
+        for(Person person:taskFromDatabase.getPersons()){
+            if(person.getEmail().equals(thisPerson.getEmail())){
+                taskFromDatabase.setTitle(task.getTitle());
+                taskFromDatabase.setDescription(task.getDescription());
+                taskRepository.save(taskFromDatabase);
+                System.out.println("Exit service");
+                return;
+            }
+        }
+        System.out.println("Continue");
+        throw new IllegalArgumentException("You do not have such rights!");
 
     }
 
     @Override
     public void delete(Long id) {
-
+        taskRepository.deleteById(id);
     }
 
     @Override

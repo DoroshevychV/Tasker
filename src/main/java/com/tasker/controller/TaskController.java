@@ -32,10 +32,17 @@ public class TaskController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus (value = HttpStatus.OK)
     public void create(@RequestBody Task task){
-        System.out.println("Controller Start Create");
         System.out.println(task.getTitle()+" "+task.getDescription());
-        System.out.println("Controller END Created");
         taskSI.save(task);
+    }
+
+    @PutMapping("/task/edit")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @ResponseStatus (value = HttpStatus.OK)
+    public void edit(@RequestBody Task task){
+        System.out.println("Ediiiiiitittttttt");
+        taskSI.edit(task);
+        System.out.println("Ediiiiiitittttttt2");
     }
 
 
@@ -51,8 +58,14 @@ public class TaskController {
     @GetMapping("/task/{id}")
     @PreAuthorize("hasRole('ROLE_USER')")
     public Task getTaskDetails(@PathVariable Long id){
-        System.out.println(id + " HELLOOOOOOO");
         return taskSI.getOneById(id);
+    }
+
+    @DeleteMapping("/task/delete")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @ResponseStatus (value = HttpStatus.OK)
+    public void delete(@RequestBody Long id){
+        taskSI.delete(id);
     }
 
 }

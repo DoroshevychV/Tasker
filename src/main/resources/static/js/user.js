@@ -38,7 +38,10 @@ $(document).ready(function () {
             'contentType': 'application/json',
             'dataType': 'json',
             'success': function (data) {
+                $('.Tasks-List').empty();
+                $('#select-task').empty();
                 if (data.length > 0) {
+
 
 
                     for (var i = 0; i < data.length; i++) {
@@ -48,12 +51,9 @@ $(document).ready(function () {
                     }
                 }else{
                     $('.Tasks-List').append('' +
-                        '<li id=" " class="Tasks-List-Li list-group-item">' + 'You do not have any tasks' + '</li>');
+                        '<li class="list-group-item">' + 'You do not have any tasks' + '</li>');
                 }
 
-
-                // $('.Action-Block').empty();
-                // $('.Action-Block').append();
             },
             'error': function (error) {
                 console.log(JSON.parse(error.responseText).message);
@@ -78,7 +78,7 @@ $(document).ready(function () {
                     '                    <b>Id:</b>\n' +
                     '                </p>\n' +
                     '                <p class="text-center">\n' +
-                    '                    <span>'+data.id+'</span>\n' +
+                    '                    <span id="delete-id">'+data.id+'</span>\n' +
                     '                </p>\n' +
                     '\n' +
                     '                <form>\n' +
@@ -95,12 +95,14 @@ $(document).ready(function () {
                     '                    </div>\n' +
                     '                </form>\n' +
                     '\n' +
-                    '                <ul id="persons-list" class="list-group"></li></ul>\n' +
+                    '      <label class="Medium-Title" for="persons-list">Users</label>           <ul id="persons-list" class="list-group"></ul>\n' +
                     '                <button id="delete-btn" type="button" class="btn btn-default" style="float: left">Delete</button>\n' +
                     '                <button id="edit-btn" type="button" class="btn btn-default" style="float: right">Edit</button>\n');
-                for (var i = 0;i = data.persons[i].length;i++) {
-                    $('#persons-list').append('<li class="Tasks-List-Li list-group-item">'+data.persons[i].email+'</li>');
-                }
+
+
+                for (var i = 0;i < data.persons.length;i++) {
+                        $('#persons-list').append('<li class="Tasks-List-Li list-group-item">'+data.persons[i].email+'</li>');
+                    }
             },
             'error': function (error) {
 
@@ -146,33 +148,70 @@ $(document).ready(function () {
             'contentType': 'application/json',
             'data': JSON.stringify(task),
             'success': function (data) {
+                $('.Action-Block').empty();
+                $('.Action-Block').append('<h3 class="Title" style="color: green">Task successfully created</h3>');
                 getUsersTasks();
             },
             'error': function (error) {
-                console.log(error);
+                $('.Action-Block').empty();
+                $('.Action-Block').append('<h3 class="Title" style="color: red">ERROR: '+JSON.parse(error.responseText).message+'</h3>');
             }
         });
     });
 
-    $('#edit-btn').on('click', function (e) {
+    $(document).on('click','#edit-btn', function (e) {
 
-        $('.Action-Block').empty();
-        $('.Action-Block').append('<h3 class="Title">Edit task</h3>\n' +
-            '                <form>\n' +
-            '                    <div class="form-group">\n' +
-            '                        <label class="Medium-Title" for="create-title-field">Title</label>\n' +
-            '                        <input type="text" class="form-control" id="create-title-field"\n' +
-            '                               placeholder="Task name(2-30 symbols)">\n' +
-            '                    </div>\n' +
-            '\n' +
-            '                    <div class="form-group">\n' +
-            '                        <label class="Medium-Title" for="create-description-field">Description</label>\n' +
-            '                        <textarea class="form-control" id="create-description-field" rows="3"\n' +
-            '                                  placeholder="Description(10-300 symbols)"></textarea>\n' +
-            '                    </div>\n' +
-            '\n' +
-            '                    <button id="edit-task-btn" type="button" class="Button btn btn-default">Save</button>\n' +
-            '                </form>');
+        var id = $('#delete-id').html();
+        var title = $('#edit-title-field').val();
+        var description = $('#edit-description-field').val();
+
+        var task = {
+            'id': id,
+            'title': title,
+            'description': description
+        };
+
+
+        $.ajax({
+            'url': 'http://localhost:8080/task/edit',
+            'type': "PUT",
+            'contentType': 'application/json',
+            'data': JSON.stringify(task),
+            'success': function (data) {
+                $('.Action-Block').empty();
+                $('.Action-Block').append('<h3 class="Title" style="color: green">Task successfully edited</h3>');
+                getUsersTasks();
+            },
+            'error': function (error) {
+                $('.Action-Block').empty();
+                $('.Action-Block').append('<h3 class="Title" style="color: red">ERROR: '+JSON.parse(error.responseText).message+'</h3>');
+            }
+        });
+
+
 
     });
+
+    $(document).on('click','#delete-btn', function (e) {
+        var id = $('#delete-id').html();
+        console.log("id = "+id);
+        $.ajax({
+            'url': 'http://localhost:8080/task/delete',
+            'type': "DELETE",
+            'contentType': 'application/json',
+            'data': JSON.stringify(id),
+            'success': function (data) {
+                $('.Action-Block').empty();
+                $('.Action-Block').append('<h3 class="Title" style="color: green">Task successfully deleted</h3>');
+                getUsersTasks();
+            },
+            'error': function (error) {
+                $('.Action-Block').empty();
+                $('.Action-Block').append('<h3 class="Title" style="color: red">ERROR: '+JSON.parse(error.responseText).message+'</h3>');
+            }
+        });
+
+
+    });
+
 });
