@@ -72,7 +72,35 @@ $(document).ready(function () {
             'dataType': 'json',
             'success': function (data) {
                 $('.Action-Block').empty();
-                $('.Action-Block').append(');
+                $('.Action-Block').append('<h3 class="Title">Edit task</h3>\n' +
+                    '\n' +
+                    '                <p class="text-center">\n' +
+                    '                    <b>Id:</b>\n' +
+                    '                </p>\n' +
+                    '                <p class="text-center">\n' +
+                    '                    <span>'+data.id+'</span>\n' +
+                    '                </p>\n' +
+                    '\n' +
+                    '                <form>\n' +
+                    '                    <div class="form-group">\n' +
+                    '                        <label class="Medium-Title" for="edit-title-field">Title</label>\n' +
+                    '                        <input type="text" class="form-control" id="edit-title-field"\n' +
+                    '                               placeholder="Task name(2-30 symbols)" value="'+data.title+'">\n' +
+                    '                    </div>\n' +
+                    '\n' +
+                    '                    <div class="form-group">\n' +
+                    '                        <label class="Medium-Title" for="edit-description-field">Description</label>\n' +
+                    '                        <textarea class="form-control" id="edit-description-field" rows="3"\n' +
+                    '                                  placeholder="Description(10-300 symbols)">'+data.description+'</textarea>\n' +
+                    '                    </div>\n' +
+                    '                </form>\n' +
+                    '\n' +
+                    '                <ul id="persons-list" class="list-group"></li></ul>\n' +
+                    '                <button id="delete-btn" type="button" class="btn btn-default" style="float: left">Delete</button>\n' +
+                    '                <button id="edit-btn" type="button" class="btn btn-default" style="float: right">Edit</button>\n');
+                for (var i = 0;i = data.persons[i].length;i++) {
+                    $('#persons-list').append('<li class="Tasks-List-Li list-group-item">'+data.persons[i].email+'</li>');
+                }
             },
             'error': function (error) {
 
