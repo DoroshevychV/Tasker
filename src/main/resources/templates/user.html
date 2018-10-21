@@ -3,8 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <title>User - Home page</title>
+
+    <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+    <!--<script type="text/javascript" src="js/getUserDetails.js"></script>-->
+    <script type="text/javascript" src="js/user.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/user.css"/>
+    <link rel="stylesheet" type="text/css" href="css/headfoot.css"/>
+
 </head>
+<style>
+    body {
+        background-color: #edeef0;
+    }
+
+    header {
+        background-color: #ffffff;
+        margin-bottom: 50px;
+    }
+
+    .Header-Container {
+
+        padding-bottom: 10px;
+    }
+</style>
 <body>
+
+<header>
+    <div class="Header-Container container-fluid">
+        <div class="row">
+
+            <div class="Header-Main-Logo col-md-12 text-center">
+                <div class="col-md-5"></div>
+                <a href="/"><i class=" fab fa-java fa-5x center-block"></i></a>
+                <div id="name-place" class="col-md-5 pull-right"></div>
+
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="Main-Container container">
+        <div class="row">
+
+            <div class="Square-Block Lef-Block col-md-3 text-center">
+                <div id="user-details" class="UD col-md-12">
+                    <!--<p class="UDField text-center">-->
+                    <!--<b>Name:</b>-->
+                    <!--</p>-->
+                    <!--<p class="UDValue text-center">-->
+                    <!--<span>Vadym</span>-->
+                    <!--</p>-->
+                    <!--<p class="UDField text-center">-->
+                    <!--<b>Email:</b>-->
+                    <!--</p>-->
+                    <!--<p class="UDValue text-center">-->
+                    <!--<span>doroshevychv@gmail.com</span>-->
+                    <!--</p>-->
+
+                    <button id="create-btn" type="button" class="btn btn-default">Create New Task</button>
+                </div>
+
+                <div class="U-Task-Block text-center">
+                    <h3 class="Title">Your tasks</h3>
+
+                    <ul class="Tasks-List list-group">
+                        <!--<li id="23" class="Tasks-List-Li list-group-item"></li>-->
+                        <!--<li id="24" class="Tasks-List-Li list-group-item"></li>-->
+                        <!--<li id="25" class="Tasks-List-Li list-group-item"></li>-->
+                        <!--<li id="26" class="Tasks-List-Li list-group-item"></li>-->
+
+                    </ul>
+                </div>
+            </div>
+            <div class="Square-Block Action-Block Center-Block col-md-5 text-center">
+
+                <!--<h3 class="Title">Edit task</h3>-->
+
+                <!--<p class="text-center">-->
+                    <!--<b>Id:</b>-->
+                <!--</p>-->
+                <!--<p class="text-center">-->
+                    <!--<span>345</span>-->
+                <!--</p>-->
+
+                <!--<form>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="Medium-Title" for="edit-title-field">Title</label>-->
+                        <!--<input type="text" class="form-control" id="edit-title-field"-->
+                               <!--placeholder="Task name(2-30 symbols)" value="Some title">-->
+                    <!--</div>-->
+
+                    <!--<div class="form-group">-->
+                        <!--<label class="Medium-Title" for="edit-description-field">Description</label>-->
+                        <!--<textarea class="form-control" id="edit-description-field" rows="3"-->
+                                  <!--placeholder="Description(10-300 symbols)">dfewewgwegewgwegewgewgewgwwe</textarea>-->
+                    <!--</div>-->
+                <!--</form>-->
+
+                <!--<ul class="list-group">-->
+                    <!--<li id="23" class="Tasks-List-Li list-group-item">doroshevychv@gmail.com</li>-->
+                <!--</ul>-->
+                <!--<button id="delete-btn" type="button" class="btn btn-default" style="float: left">Delete</button>-->
+                <!--<button id="edit-btn" type="button" class="btn btn-default" style="float: right">Edit</button>-->
+
+
+                <!--<h3 class="Title">Edit task</h3>-->
+                <!--<form>-->
+                <!--<div class="form-group">-->
+                <!--<label class="Medium-Title" for="create-title-field">Title</label>-->
+                <!--<input type="text" class="form-control" id="create-title-field"-->
+                <!--placeholder="Task name(2-30 symbols)">-->
+                <!--</div>-->
+
+                <!--<div class="form-group">-->
+                <!--<label class="Medium-Title" for="create-description-field">Description</label>-->
+                <!--<textarea class="form-control" id="create-description-field" rows="3"-->
+                <!--placeholder="Description(10-300 symbols)"></textarea>-->
+                <!--</div>-->
+
+                <!--<button id="edit-task-btn" type="button" class="Button btn btn-default">Save</button>-->
+                <!--</form>-->
+            </div>
+            <div class="Square-Block Share-Block Center-Block col-md-3 text-center">
+                <h3 class="Title">Share task</h3>
+                <form>
+                    <div class="form-group">
+                        <label class="Medium-Title" for="select-task">Select a task</label>
+                        <select class="form-control" id="select-task">
+
+                        </select>
+                        <label class="Medium-Title" for="email-recipient">Email of the recipient</label>
+                        <input type="text" class="form-control" id="email-recipient"
+                               placeholder="Task name(2-30 symbols)">
+                    </div>
+
+                    <button id="send-btn" type="button" class="btn btn-default" style="float: right">Send</button>
+                    <!--<div class="form-group">-->
+                    <!--<label class="Medium-Title" for="create-description-field">Description</label>-->
+                    <!--<textarea class="form-control" id="create-description-field" rows="3"-->
+                    <!--placeholder="Description(10-300 symbols)"></textarea>-->
+                    <!--</div>-->
+
+                    <!--<button id="edit-task-btn" type="button" class="Button btn btn-default">Save</button>-->
+
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
 
 </body>
 </html>

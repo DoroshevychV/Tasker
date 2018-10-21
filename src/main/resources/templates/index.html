@@ -22,9 +22,8 @@
 
     <script type="text/javascript" src="js/registration.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
-
-    <!--<link rel="stylesheet" type="text/css" href="../static/css/index.css"/>-->
-    <!--<link rel="stylesheet" type="text/css" href="../static/css/headfoot.css"/>-->
+    <script type="text/javascript" src="js/getUserDetails.js"></script>
+    <!--<script type="text/javascript" src="js/logout.js"></script>-->
 
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <link rel="stylesheet" type="text/css" href="css/headfoot.css"/>
@@ -35,14 +34,17 @@
     body {
         background-color: #ffff;
     }
+
 </style>
 <body>
 
 <header>
     <div class="Header-Container container">
-        <div class="row">
+        <div id="name-place" class="row">
+
             <div class="Header-Main-Logo col-md-12 text-center">
-                <i class="fab fa-java fa-5x center-block"></i>
+                <a href="/"><i class=" fab fa-java fa-5x center-block"></i></a>
+
             </div>
         </div>
     </div>
@@ -103,9 +105,21 @@
 
                     <div class="About col-md-5">
                         <h1 class="Title-Name">Login & Registration</h1>
+                        <!--<div class="Form-Square">-->
+                            <!--<div class=" col-md-12">-->
+                                <!--<div class="form-group">-->
+                                    <!--<label for="login-email">-->
+                                        <!--Continue as <a href="/user">Vadym</a>-->
+                                    <!--</label>-->
+                                    <!--<button id="" type="button" class="btn btn-default">Continue</button>-->
+                                    <!--<button id="" type="button" class="btn">Logout</button>-->
+
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <div class=" col-md-12">
                             <h3 class="Small-Title-Name">Login</h3>
-                            <form class="Form-Square" method="post" action="/login">
+                            <div class="Form-Square">
 
                                 <div class="form-group">
                                     <label for="login-email">Email address</label>
@@ -120,17 +134,18 @@
                                 </div>
                                 <span class="Error-Field col-md-12" id="login-error-field"></span>
                                 <button id="login-button" type="button" class="btn btn-default">Login</button>
-                            </form>
+                            </div>
                         </div>
 
                         <div class=" col-md-12">
                             <h3 class="Small-Title-Name">Registration</h3>
-                            <form class="Form-Square" method="post" action="/registration">
+                            <div class="Form-Square">
 
                                 <div class="form-group">
                                     <label for="registration-first-name">First name</label>
-                                    <input type="text"  class="form-control"
-                                           id="registration-first-name" placeholder="First name - 2-15 symbols and  include only letters">
+                                    <input type="text" class="form-control"
+                                           id="registration-first-name"
+                                           placeholder="First name - 2-15 symbols and  include only letters">
                                 </div>
 
                                 <div class="form-group">
@@ -145,8 +160,9 @@
                                            id="registration-password" placeholder="Password - 8-28 symbols">
                                 </div>
                                 <span class="Error-Field col-md-12" id="registration-error-field"></span>
-                                <button id="registration-button" type="button" class="btn btn-default">Register now</button>
-                            </form>
+                                <button id="registration-button" type="button" class="btn btn-default">Register now
+                                </button>
+                            </div>
 
                         </div>
                     </div>
@@ -204,6 +220,8 @@
 </footer>
 </body>
 <script>
+
+
 
 </script>
 

@@ -1,4 +1,7 @@
 /*--------------------START/Header----------------------*/
+.Header-Container{
+    padding-bottom: 10px;
+}
 .Header-Container-Small{
     width: 100%;
     min-height: 80px;
@@ -7,9 +10,28 @@
     border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 .Header-Main-Logo{
-    padding-top: 20px;
-    padding-bottom: 20px;
+    /*padding-top: 20px;*/
+    /*padding-bottom: 20px;*/
 }
+
+.User-Name{
+    color: #009688;
+    font-weight: 100;
+    text-decoration: none;
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+.Logout-btn{
+    color: #009688;
+    float: right;
+    margin-top: 20px;
+
+}
+.Logout-btn span{
+    font-weight: 100;
+}
+
 /*--------------------------END/Header---------------*/
 
 

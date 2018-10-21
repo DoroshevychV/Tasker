@@ -12,13 +12,12 @@ $(document).ready(function () {
             'password': password
         };
         $.ajax({
-            'url': 'http://localhost:8080/user/registration',
+            'url': 'http://localhost:8080/registration',
             'type': "POST",
             'contentType': 'application/json',
             'dataType': 'json',
             'data': JSON.stringify(person),
             'headers': {
-                // 'A-Token': localStorage.getItem('A-Token'),
                 'Content-Type': 'application/json;charset=utf-8'
             },
             'success': function (data) {

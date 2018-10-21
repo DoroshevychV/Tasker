@@ -18,54 +18,66 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 import java.io.IOException;
 
 @Component
 public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFilter {
 
-	@Value("${lgs.token.header}")
-	private String tokenHeader;
+    @Value("${lgs.token.header}")
+    private String tokenHeader;
 
-	@Autowired
-	private TokenUtils tokenUtils;
+    @Autowired
+    private TokenUtils tokenUtils;
 
-	@Qualifier("personSI")
-	@Autowired
-	private UserDetailsService userDetailsService;
+    @Qualifier("personSI")
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Autowired
     public void setAuthenticationManager(AuthenticationManager authenticationManager) {
         super.setAuthenticationManager(authenticationManager);
     }
 
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		
-		String tkn = "";
-		Cookie[] cookies = httpRequest.getCookies();
-		if (cookies!= null) {
-			for (Cookie cook : cookies) {
-				if (cook.getName().equals("A-Token")) {
-					tkn = cook.getValue();
-					break;
-				}
-			}
-		}
-		if (tkn.length() > 0) {
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
 
-//			try {
-				String username = this.tokenUtils.getUsernameFromToken(tkn);
-				if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-					UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-					if (this.tokenUtils.validateToken(tkn, userDetails)) {
-						UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-						authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest));
-						SecurityContextHolder.getContext().setAuthentication(authentication);
-					}
-				}
-//			}catch (Exception e){}
-		}
-		chain.doFilter(request, response);
-	}
+
+        String tkn = "";
+        Cookie[] cookies = httpRequest.getCookies();
+        if (cookies != null) {
+            for (Cookie cook : cookies) {
+                if (cook.getName().equals("A-Token")) {
+                    tkn = cook.getValue();
+                    break;
+                }
+            }
+        }
+
+
+        if (tkn.length() > 0) {
+
+            String username = this.tokenUtils.getUsernameFromToken(tkn);
+            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+                if (this.tokenUtils.validateToken(tkn, userDetails)) {
+                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest));
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                } else {
+                    Cookie cookie = new Cookie(tokenHeader, "");
+                    cookie.setMaxAge(0);
+
+                    HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+                    httpServletResponse.addCookie(cookie);
+
+                }
+            }
+        }
+        chain.doFilter(request, response);
+    }
+
+
 }

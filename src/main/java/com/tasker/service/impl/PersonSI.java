@@ -8,6 +8,7 @@ package com.tasker.service.impl;
 
 import com.tasker.dto.request.LoginPersonDTO;
 import com.tasker.dto.request.PersonDTO;
+import com.tasker.dto.response.PersonDetailsDTO;
 import com.tasker.dto.response.TokenModel;
 import com.tasker.entity.Person;
 import com.tasker.entity.enums.Role;
@@ -55,8 +56,6 @@ public class PersonSI implements PersonService, UserDetailsService {
 
     @Override
     public TokenModel save(PersonDTO personDTO) throws IllegalArgumentException {
-        System.out.println(tokenHeader);
-
         /** Name's length must be 2-15 symbols and  include only letters */
         if (personDTO.getFirstName().length() >= 2
                 && personDTO.getFirstName().length() <= 15
@@ -148,5 +147,18 @@ public class PersonSI implements PersonService, UserDetailsService {
         String token = this.tokenUtils.generateToken(userDetails);
         TokenModel tokenModel = new TokenModel("A-Token", token);
         return tokenModel;
+    }
+
+    @Override
+    public Person getUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Person person = (Person) auth.getPrincipal();
+        return person;
+    }
+
+    @Override
+    public PersonDetailsDTO personDetails() {
+        Person person = Person.getPerson();
+        return new PersonDetailsDTO(person.getFirstName(),person.getEmail());
     }
 }

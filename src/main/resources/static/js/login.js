@@ -10,7 +10,7 @@ $(document).ready(function () {
             'password': password
         };
         $.ajax({
-            'url': 'http://localhost:8080/user/login',
+            'url': 'http://localhost:8080/login',
             'type': "POST",
             'contentType': 'application/json',
             'dataType': 'json',

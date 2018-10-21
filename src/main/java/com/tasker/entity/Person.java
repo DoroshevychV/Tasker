@@ -6,10 +6,13 @@
  **/
 package com.tasker.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tasker.entity.enums.Role;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -17,6 +20,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "person")
@@ -34,9 +38,19 @@ public class Person implements UserDetails {
 
     private Role role;
 
+
+    @JsonBackReference
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "PERSON_TASKS",
+            joinColumns = @JoinColumn(name = "ID_PERSON"),
+            inverseJoinColumns = @JoinColumn(name = "ID_TASK"))
+    private List<Task> tasks = new ArrayList<>();
+
     @NotNull
     @JsonIgnore
     private String password;
+
+
 
     public Person() {
     }
@@ -50,6 +64,14 @@ public class Person implements UserDetails {
     public Person(@NotNull String firstName, @NotNull String email, @NotNull String password) {
         this.firstName = firstName;
         this.email = email;
+        this.password = password;
+    }
+
+    public Person(@NotNull String firstName, @NotNull String email, Role role, List<Task> tasks, @NotNull String password) {
+        this.firstName = firstName;
+        this.email = email;
+        this.role = role;
+        this.tasks = tasks;
         this.password = password;
     }
 
@@ -93,6 +115,14 @@ public class Person implements UserDetails {
         this.role = role;
     }
 
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -103,36 +133,6 @@ public class Person implements UserDetails {
                 ", password='" + password + '\'' +
                 '}';
     }
-
-    //    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return null;
-//    }
-//
-//    @Override
-//    public String getUsername() {
-//        return null;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonExpired() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isAccountNonLocked() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isCredentialsNonExpired() {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean isEnabled() {
-//        return false;
-//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -162,5 +162,11 @@ public class Person implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+
+    public static Person getPerson(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return (Person) auth.getPrincipal();
     }
 }

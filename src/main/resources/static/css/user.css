@@ -1,0 +1,54 @@
+.Main-Container{
+    /*border-top: 1px solid rgba(0,0,0,0.2);*/
+}
+.Square-Block{
+    background-color: #ffffff;
+    margin: 5px;
+    margin-right: 5px;
+    padding: 20px;
+}
+.UD{
+    /*border-bottom: 2px solid rgba(0,0,0,0.2);*/
+    margin-bottom: 50px;
+
+}
+.UDField{
+    color: rgba(0,0,0,0.5);
+    font-family: "Ubuntu Light";
+}
+.UDValue{
+    color: darkolivegreen;
+    font-family: "Ubuntu Condensed";
+}
+.U-Task-Block{
+    margin-bottom: 50px;
+}
+
+.Title{
+
+    font-family: "Ubuntu Condensed";
+    font-weight: bold;
+    color: rgba(0,0,0,0.7);
+    padding-bottom: 50px;
+}
+
+.Tasks-List :hover{
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.1);
+}
+.Button{
+    margin-bottom: 20px;
+}
+
+.Medium-Title{
+    font-family: "Ubuntu Mono";
+    font-weight: bold;
+    color: rgba(0,0,0,0.7);
+}
+.Action-Block {
+    min-height: 0px;
+}
+.btn-default{
+    margin: 20px;
+}
+

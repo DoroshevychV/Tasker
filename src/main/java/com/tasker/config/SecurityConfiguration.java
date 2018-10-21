@@ -4,6 +4,7 @@ package com.tasker.config;
 import com.tasker.security.AuthenticationTokenFilter;
 import com.tasker.security.EntryPointUnauthorizedHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private EntryPointUnauthorizedHandler entryPointUnauthorizedHandler;
 
+	@Qualifier("personSI")
 	@Autowired
 	private UserDetailsService userDetails;
 
@@ -38,6 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
+		
 		http.exceptionHandling()
 		.authenticationEntryPoint(this.entryPointUnauthorizedHandler).and().sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()

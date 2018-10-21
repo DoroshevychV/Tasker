@@ -10,6 +10,7 @@ package com.tasker.service;
 
 import com.tasker.dto.request.LoginPersonDTO;
 import com.tasker.dto.request.PersonDTO;
+import com.tasker.dto.response.PersonDetailsDTO;
 import com.tasker.dto.response.TokenModel;
 import com.tasker.entity.Person;
 
@@ -27,4 +28,8 @@ public interface PersonService {
 
 
     TokenModel authentication(String email, String password);
+
+    PersonDetailsDTO personDetails();
+
+    Person getUser();
 }
