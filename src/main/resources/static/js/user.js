@@ -32,6 +32,7 @@ $(document).ready(function () {
 
 
     function getUsersTasks(){
+        // console.log("GetUSersTAsk");
         $.ajax({
             'url': 'http://localhost:8080/task/all',
             'type': "GET",
@@ -39,7 +40,7 @@ $(document).ready(function () {
             'dataType': 'json',
             'success': function (data) {
                 $('.Tasks-List').empty();
-                $('#select-task').empty();
+                $('#send-select-task').empty();
                 if (data.length > 0) {
 
 
@@ -47,7 +48,7 @@ $(document).ready(function () {
                     for (var i = 0; i < data.length; i++) {
                         $('.Tasks-List').prepend('' +
                             '<li id="' + data[i].id + '" class="Tasks-List-Li list-group-item">' + data[i].title + '</li>');
-                        $('#select-task').prepend('<option id="'+data[i].id+'">'+data[i].title+'</option>');
+                        $('#send-select-task').prepend('<option id="'+data[i].id+'">'+data[i].title+'</option>');
                     }
                 }else{
                     $('.Tasks-List').append('' +
@@ -203,6 +204,36 @@ $(document).ready(function () {
             'success': function (data) {
                 $('.Action-Block').empty();
                 $('.Action-Block').append('<h3 class="Title" style="color: green">Task successfully deleted</h3>');
+                getUsersTasks();
+            },
+            'error': function (error) {
+                $('.Action-Block').empty();
+                $('.Action-Block').append('<h3 class="Title" style="color: red">ERROR: '+JSON.parse(error.responseText).message+'</h3>');
+            }
+        });
+
+
+    });
+
+
+    $(document).on('click','#send-btn', function (e) {
+        var id = $('#send-select-task').children(":selected").attr("id");
+        var email = $('#send-email-recipient').val();
+
+        var sendTaskDTO = {
+            'id': id,
+            'email': email
+        };
+
+
+        $.ajax({
+            'url': 'http://localhost:8080/task/send',
+            'type': "PUT",
+            'contentType': 'application/json',
+            'data': JSON.stringify(sendTaskDTO),
+            'success': function (data) {
+                $('.Action-Block').empty();
+                $('.Action-Block').append('<h3 class="Title" style="color: green">Task successfully send</h3>');
                 getUsersTasks();
             },
             'error': function (error) {

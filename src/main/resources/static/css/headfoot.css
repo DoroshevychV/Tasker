@@ -43,76 +43,10 @@
     height: 200px;
     background-color: #fafafa;
 }
-
-
-@media screen and (max-width: 992px){
-    .FOOTER{
-        background-color: #fafafa;
-        height: 640px;
-    }
+.Footer-Container h3{
+    color: silver;
+    margin: 50px;
 }
-/*START/Full name and position*/
-.Programmers-Name{
-    margin-top: 75px;
-    font-family: "Ubuntu Condensed";
-    font-weight: bold;
-    color: rgba(0,0,0,0.7);
-}
-
-.Programmers-Position, .Programmers-Location{
-    margin-top: 0px;
-    color: rgba(0,0,0,0.6);
-    font-family: "Ubuntu Light";
-    font-weight: bold;
-}
-.Programmers-Location{
-    color: rgba(0,0,0,0.4);
-}
-/*STOP/Full name and position*/
-
-
-/*START/Programmer's photo */
-.Programmers-Photo{
-    max-width: 140px;
-    margin-top: 30px;
-    border-image: linear-gradient(to bottom, blue, red) 1 100%;
-}
-/*STOP/Programmer's photo */
-
-
-/*START/Programmer's contact*/
-.List{
-    padding-top: 50px;
-}
-.List a{
-    margin-top: 5px;
-    text-decoration: none;
-}
-.List a span{
-    color: rgba(0,0,0,0.5);
-    font-family: Ubuntu;
-}
-
-.List a :hover{
-    color: rgba(0,0,0,0.7);
-    font-weight: bold;
-}
-
-
-@media screen and (max-width: 992px){
-    .Contact-Block{
-        text-align: center;
-    }
-}
-
-@media screen and (min-width: 768px) and (max-width: 991px) {
-    .Contact-Block{
-        margin-top: 320px;
-    }
-}
-
-/*STOP/Programmer's contact*/
-
 
 
 /*------------END - <PROGRAMMER FOOTER> - END----------*/

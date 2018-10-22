@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "task")
@@ -80,5 +81,30 @@ public class Task {
                 ", description='" + description + '\'' +
                 ", persons=" + persons +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Task guest = (Task) o;
+        return id == guest.id
+                && (title == guest.title
+                || (title != null
+                &&title.equals(guest.getTitle())))
+                && (description == guest.description
+                || (description != null
+                && description .equals(guest.getDescription())
+        ));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getTitle(), getDescription(), getPersons());
     }
 }

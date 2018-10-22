@@ -6,6 +6,7 @@
  **/
 package com.tasker.controller;
 
+import com.tasker.dto.request.SendTaskDTO;
 import com.tasker.editor.TaskEditor;
 import com.tasker.entity.Task;
 import com.tasker.service.TaskService;
@@ -32,7 +33,6 @@ public class TaskController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus (value = HttpStatus.OK)
     public void create(@RequestBody Task task){
-        System.out.println(task.getTitle()+" "+task.getDescription());
         taskSI.save(task);
     }
 
@@ -40,18 +40,14 @@ public class TaskController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus (value = HttpStatus.OK)
     public void edit(@RequestBody Task task){
-        System.out.println("Ediiiiiitittttttt");
         taskSI.edit(task);
-        System.out.println("Ediiiiiitittttttt2");
     }
 
 
     @GetMapping("/task/all")
     @PreAuthorize("hasRole('ROLE_USER')")
     public List<Task> getAllUsersTasks(){
-//        System.out.println("Controller Start");
         List<Task> list = taskSI.getAllByPerson();
-//        System.out.println("Controller END");
         return list;
     }
 
@@ -66,6 +62,14 @@ public class TaskController {
     @ResponseStatus (value = HttpStatus.OK)
     public void delete(@RequestBody Long id){
         taskSI.delete(id);
+    }
+
+
+    @PutMapping("/task/send")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @ResponseStatus (value = HttpStatus.OK)
+    public void send(@RequestBody SendTaskDTO sendTaskDTO){
+        taskSI.send(sendTaskDTO.getId(),sendTaskDTO.getEmail());
     }
 
 }

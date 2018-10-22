@@ -16,6 +16,7 @@ public interface TaskService {
     void save(Task task);
     void edit(Task task);
     void delete(Long id);
+    void send(Long id, String email);
     List<Task>getAllByPerson();
     Task getOneById(Long id);
 }
